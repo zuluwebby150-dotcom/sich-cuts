@@ -57,7 +57,7 @@ a{color:inherit}
 .media.img-missing::after{content:"SC";position:absolute;inset:0;display:grid;place-items:center;font-family:"Playfair Display",serif;font-size:3rem;color:rgba(212,175,55,.45)}
 
 /* Hero */
-    .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
 .hero-img{position:absolute;inset:0}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.8))}
 .hero-content{position:relative;text-align:center;padding:60px 0;animation:rise .9s ease both}
@@ -70,7 +70,7 @@ a{color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 /* Sections */
-.section{padding:84px 0}
+    .section{padding:84px 0}
 .section.dark{background:var(--charcoal)}
 .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.25em;font-size:.78rem;font-weight:600}
 h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margin:6px 0 10px}
@@ -121,6 +121,15 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
 .footer-links a{text-decoration:none;color:var(--muted);font-size:.92rem}
 .copy{text-align:center;padding:26px 16px;margin-top:30px;border-top:1px solid var(--line);font-size:.82rem}
 
+/* Photo viewer */
+.card .media img,.gallery .media img{cursor:zoom-in}
+.gallery figcaption{pointer-events:none}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.93);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:12px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:12px}
+.lb-close{position:absolute;top:12px;right:12px;width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);background:#000;color:var(--gold);font-size:2rem;line-height:1;cursor:pointer}
+.lb-cap{color:var(--muted);font-size:.9rem;text-align:center}
+
 /* Mobile */
 @media (max-width:820px){
   .menu-toggle{display:flex}
@@ -132,8 +141,8 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
   .section{padding:60px 0}
   .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:10px;-webkit-overflow-scrolling:touch}
   .gallery .media{flex:0 0 78%;scroll-snap-align:center}
-             }
-    media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 </style>
 </head>
@@ -191,7 +200,7 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
             <a href="#" class="btn btn-gold btn-block book-service" data-service="Adult Haircut" data-price="K30">Book Adult Haircut</a>
           </div>
         </article>
-        <article class="card">
+           <article class="card">
           <figure class="media"><img loading="lazy" src="images/adult-haircut-dye.jpg" alt="Adult haircut with dyed hair"></figure>
           <div class="card-body">
             <h3>Adult Haircut with Dye</h3>
@@ -372,6 +381,48 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
     if (img.complete && img.naturalWidth === 0) miss();
   });
 
+  // Photo viewer: tap a photo to open it large
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.setAttribute('aria-label', 'Photo viewer');
+  lb.hidden = true;
+  lb.innerHTML = '<button class="lb-close" aria-label="Close photo">&times;</button><img alt=""><p class="lb-cap"></p>';
+  document.body.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  var lbCap = lb.querySelector('.lb-cap');
+  var lbClose = lb.querySelector('.lb-close');
+  var lastFocus = null;
+  function openLb(img) {
+    if (img.parentElement.classList.contains('img-missing')) return;
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = img.alt;
+    lastFocus = document.activeElement;
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+  function closeLb() {
+    lb.hidden = true;
+    lbImg.removeAttribute('src');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('.card .media img, .gallery .media img').forEach(function (img) {
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.addEventListener('click', function () { openLb(img); });
+    img.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(img); }
+    });
+  });
+  lb.addEventListener('click', function (e) { if (e.target !== lbImg) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !lb.hidden) closeLb();
+  });
+
   // Footer year
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
@@ -379,5 +430,5 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
 
 </script>
 </body>
-</html>
-                                                                                                                                                           
+  </html>
+  
