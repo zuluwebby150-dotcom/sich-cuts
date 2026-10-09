@@ -6,6 +6,7 @@
   <title>Sich Cuts Executive Barbershop | Haircuts in Solwezi, Zambia</title>
   <meta name="description" content="Sich Cuts Executive Barbershop in Solwezi Urban Extension offers stylish haircuts for adults, teenagers and children. Book on WhatsApp.">
   <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%230b0b0b%22%20stroke%3D%22%23d4af37%22%20stroke-width%3D%224%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2242%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2228%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%20fill%3D%22%23d4af37%22%3ESC%3C%2Ftext%3E%3C%2Fsvg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -56,13 +57,14 @@ a{color:inherit}
 .media.img-missing::after{content:"SC";position:absolute;inset:0;display:grid;place-items:center;font-family:"Playfair Display",serif;font-size:3rem;color:rgba(212,175,55,.45)}
 
 /* Hero */
-.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+    .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
 .hero-img{position:absolute;inset:0}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.8))}
 .hero-content{position:relative;text-align:center;padding:60px 0;animation:rise .9s ease both}
 .hero h1{display:flex;flex-direction:column;gap:6px}
 .hero h1 span{font-family:"Playfair Display",serif;font-size:clamp(2.8rem,10vw,5.5rem);color:var(--gold);letter-spacing:.06em;line-height:1}
 .hero h1 em{font-style:normal;font-size:clamp(.9rem,3.2vw,1.4rem);letter-spacing:.35em}
+.hero-sub{color:var(--muted);max-width:520px;margin:-10px auto 28px;font-size:1rem}
 .slogan{margin:22px auto 30px;max-width:560px;font-size:clamp(1rem,3.5vw,1.25rem);color:var(--white)}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -106,6 +108,8 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
 .contact-list a{text-decoration:none;word-break:break-word}
 .contact-list a:hover{color:var(--gold)}
 .contact-actions{display:grid;gap:12px;align-content:start}
+.hours{display:grid;gap:4px}
+.hours b{display:inline-block;min-width:150px;font-weight:600}
 .note{margin-top:24px;color:var(--muted);font-size:.9rem}
 
 /* Footer */
@@ -128,8 +132,8 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
   .section{padding:60px 0}
   .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:10px;-webkit-overflow-scrolling:touch}
   .gallery .media{flex:0 0 78%;scroll-snap-align:center}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+             }
+    media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 </style>
 </head>
@@ -164,6 +168,7 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
     <div class="container hero-content">
       <h1><span>SICH CUTS</span><em>EXECUTIVE BARBERSHOP</em></h1>
       <p class="slogan">Your Style. Your Confidence. Your Executive Look.</p>
+      <p class="hero-sub">Professional haircuts for adults, teens and kids in Solwezi Urban Extension.</p>
       <div class="hero-actions">
         <a href="#" class="btn btn-gold book-generic">Book Your Cut</a>
         <a href="#services" class="btn btn-outline">Explore Our Services</a>
@@ -277,12 +282,13 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
           <li><span>Phone</span><a href="tel:+260978438009">+260 978 438 009</a></li>
           <li><span>Email</span><a href="mailto:Shibygift21@gmail.com">Shibygift21@gmail.com</a></li>
           <li><span>Location</span>Solwezi Urban Extension, Solwezi, Zambia</li>
+          <li><span>Opening hours</span><div class="hours"><div><b>Monday to Saturday</b> 08:00 – 22:00</div><div><b>Sunday</b> 11:00 – 22:00</div></div></li>
         </ul>
         <div class="contact-actions">
           <a href="tel:+260978438009" class="btn btn-outline btn-block">Call the Shop</a>
           <a href="mailto:Shibygift21@gmail.com?subject=Enquiry%20-%20Sich%20Cuts%20Executive%20Barbershop" class="btn btn-outline btn-block">Send an Email</a>
           <a href="#" class="btn btn-gold btn-block book-generic">Book on WhatsApp</a>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Sich+Cuts+Executive+Barbershop+Solwezi+Urban+Extension" target="_blank" rel="noopener" class="btn btn-outline btn-block">Open in Google Maps</a>
+          <a href="https://maps.app.goo.gl/sghMENcxCTYnignL8" target="_blank" rel="noopener" class="btn btn-outline btn-block">Get Directions</a>
         </div>
       </div>
       <p class="note">Bookings are not confirmed until the shop replies to your WhatsApp message.</p>
@@ -326,7 +332,7 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
     var price = a.getAttribute('data-price');
     var msg = 'Hello ' + SHOP + ', I would like to book ' +
       (/^[AEIOU]/i.test(service) ? 'an ' : 'a ') + service + ' (' + price + '). ' +
-      'Please let me know your available times.';
+      'Please let me know your available times.\n\nMy name: ___\nPreferred day and time: ___';
     a.href = waLink(msg);
     a.target = '_blank';
     a.rel = 'noopener';
@@ -334,7 +340,7 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
 
   // Generic booking buttons
   var genericMsg = 'Hello ' + SHOP + ', I would like to book an appointment. ' +
-    'Please let me know your available times and prices.';
+    'Please let me know your available times and prices.\n\nMy name: ___\nPreferred day and time: ___';
   document.querySelectorAll('.book-generic').forEach(function (a) {
     a.href = waLink(genericMsg);
     a.target = '_blank';
@@ -374,3 +380,4 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,5vw,2.8rem);margi
 </script>
 </body>
 </html>
+                                                                                                                                                           
